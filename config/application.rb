@@ -33,7 +33,7 @@ module Nono
         :domain => "www.inruby.com",   #qq.com
         :authentication => :plain,
         :user_name => "calmeiiorz@gmail.com", #修改邮箱
-        :password => "52828172" #修改正确的密码
+        :password => "123" #修改正确的密码
     }
   end
 end
