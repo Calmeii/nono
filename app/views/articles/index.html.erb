@@ -1,0 +1,15 @@
+<ul class="nav nav-tabs nav-justified" style="margin-top: 5px">
+  <li class="active"><%= link_to '首页', root_path %></li>
+  <li><%= link_to '我的博客', :controller => 'articles', :action => 'now' %></li>
+  <li><a href="#">朋友圈</a></li>
+  <li><a href="#">关于我</a></li>
+  <% if current_user %>
+      <li>
+        <%= link_to(current_user.username.to_s.force_encoding('utf-8')+'-注销', destroy_user_session_path, :method => :delete) %>
+      </li>
+  <% else %>
+      <li><%= link_to('登录', new_session_path(:user)) %></li>
+  <% end %>
+</ul>
+
+<h1>欢迎来到德莱联盟</h1>
