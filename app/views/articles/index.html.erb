@@ -1,15 +1,48 @@
-<ul class="nav nav-tabs nav-justified" style="margin-top: 5px">
-  <li class="active"><%= link_to '首页', root_path %></li>
-  <li><%= link_to '我的博客', :controller => 'articles', :action => 'now' %></li>
-  <li><a href="#">朋友圈</a></li>
-  <li><a href="#">关于我</a></li>
-  <% if current_user %>
-      <li>
-        <%= link_to(current_user.username.to_s.force_encoding('utf-8')+'-注销', destroy_user_session_path, :method => :delete) %>
-      </li>
-  <% else %>
-      <li><%= link_to('登录', new_session_path(:user)) %></li>
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+  <% id = 1 %>
+  <% @articles.each do |article| %>
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="article_title">
+          <%= article.title.to_s.force_encoding('utf-8') %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="article_content" id = "con<%=id%>"><%= article.content.to_s.force_encoding('utf-8') %>
+        </div>
+      </div>
+    </div>
+    <% id = id+1 %>
   <% end %>
-</ul>
+  </div>
+  <div class="col-md-2"></div>
+  </div>
+</div>
 
-<h1>欢迎来到德莱联盟</h1>
+<script>
+  $(function(){
+    var n = <%=id%>;
+    for (var i = 1; i < n; i++) {
+      var str = $("#con"+i).html();
+      $("#con"+i).html(marked(str));
+    }
+  })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

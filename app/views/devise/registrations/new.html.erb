@@ -1,33 +1,54 @@
-<h2>Sign up</h2>
+<div class="myContainer" style="height: 100%; background-color: #3c8dbc">
+  <div id="fakeLoader"></div>
+  <div class="container">
+    <div class="login-logo" style="color: #ffffff;margin: 13% auto 0 auto;font-size: 30px;width: 160px;">
+      Blog Park
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div>
+          <%= devise_error_messages! %>
+        </div>
+        <div class="login-box" style="  margin: 1% auto 0 auto;padding: 20px 20px;height: 280px;
+            width: 450px;border: solid 1px #eeeeee;background-color: #fff;">
+          <div class="input-group">
+              <%= f.text_field :username , autofocus: true, class: "form-control", placeholder:"用户名" %>
+              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span> </span>
+          </div>
+          <div class="input-group" style="margin-top: 10px">
+            <%= f.email_field :email, class: "form-control", placeholder: "邮箱" %>
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span> </span>
+          </div>
+          <div class="input-group" style="margin-top: 10px">
+            <%= f.password_field :password, autocomplete: "off",placeholder: "密码:最少"+@minimum_password_length.to_s+"个字符", class: "form-control" %>
+            <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-lock"></span> </span>
+          </div>
+          <div class="input-group" style="margin-top: 10px">
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control",placeholder:"密码验证" %>
+            <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-paperclip"></span> </span>
+          </div>
 
-  <div>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+          <div class="btn-group"  role="group" style="margin-top: 20px;width: 100%">
+            <%= f.submit "注册", class: "btn btn-lg btn-primary btn-block" %>
+          </div>
+        </div>
+    <% end %>
+
+
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+</div>
+<script type="text/javascript">
+  //  $("#fakeLoader").fakeLoader();
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  $("#fakeLoader").fakeLoader({
+    timeToHide:1200, //加载效果的持续时间
+    zIndex:"999",//
+    spinner:"spinner1",//可选值 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 对应有7种效果
+    bgColor: "#3c8dbc"    //    imagePath:"yourPath/customizedImage.gif" //自定义的加载图片，见demo8.html
+  });
+</script>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+

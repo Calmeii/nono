@@ -1,0 +1,5 @@
+<%= form_for @article, :url => article_path(@article), :html => {:method => :patch} do |f| %>
+  <%= f.text_field :title, placeholder: @article.title.to_s.force_encoding('utf-8') %>
+  <%= f.text_area :content, placeholder: @article.content.to_s.force_encoding('utf-8') %>
+  <%= f.submit %>
+<% end %>

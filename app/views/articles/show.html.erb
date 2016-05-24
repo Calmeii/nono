@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="article_title">
+    <%= @article.title.to_s.force_encoding('utf-8') %>
+  </div>
+  <div class="article_content" id = "content"><%= @article.content.to_s.force_encoding('utf-8') %>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var str = $("#content").html();
+    $('#content').html(marked(str));
+  })
+</script>
