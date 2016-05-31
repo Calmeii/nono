@@ -1,8 +1,27 @@
-<div class="container">
-  <div class="article_title">
-    <%= @article.title.to_s.force_encoding('utf-8') %>
-  </div>
-  <div class="article_content" id = "content"><%= @article.content.to_s.force_encoding('utf-8') %>
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="article_title">
+              <%= @article.title.to_s.force_encoding('utf-8') %>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="article_content" id = "content"><%= @article.content.to_s.force_encoding('utf-8') %></div>
+          </div>
+          <div class="panel-footer panel-primary" style="overflow: auto">
+            <% if current_user == @article.user%>
+            <%= link_to raw('<span class="glyphicon glyphicon-edit"></span> 编辑'), edit_article_path(@article), style: 'margin-right:30px' %>
+            <%= link_to raw('<span class="glyphicon glyphicon-trash"></span> 删除'), article_path(@article),
+                        :method => :delete %>
+            <% end %>
+            <a href="#" style="float: right"><%= @article.user.username.to_s.force_encoding('utf-8') %></a>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 

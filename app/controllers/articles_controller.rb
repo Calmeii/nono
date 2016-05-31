@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
 
   #显示指定文章
   def show
-    @article = current_user.articles.find(params[:id])
+    @article = Article.find(params[:id])
   end
   #增加新文章
   def new

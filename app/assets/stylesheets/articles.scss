@@ -20,3 +20,11 @@
   font-size: 13px;
   color: #888;
 }
+ul li a:hover {
+  //background-color: red !important;
+  border: none !important;
+  color: #3c8dbc !important;
+}
+a:hover {
+  text-decoration: none !important;
+}

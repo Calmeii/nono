@@ -1,7 +1,7 @@
 <div class="container" style="margin-top: 50px">
   <div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
   <% id = 1 %>
   <% @articles.each do |article| %>
     <div class="panel">
@@ -14,11 +14,15 @@
         <div class="article_content" id = "con<%=id%>"><%= article.content.to_s.force_encoding('utf-8') %>
         </div>
       </div>
+      <div class="panel-footer panel-primary" style="overflow: auto">
+        <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span> 查看'), article_path(article), style: 'margin-right:30px'%>
+        <a href="#" style="float: right;"><%= article.user.username.to_s.force_encoding('utf-8') %></a>
+      </div>
     </div>
     <% id = id+1 %>
   <% end %>
   </div>
-  <div class="col-md-2"></div>
+  <div class="col-md-1"></div>
   </div>
 </div>
 
