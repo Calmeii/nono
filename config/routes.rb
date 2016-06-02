@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root :to => 'articles#index'
   get 'articles' => 'articles#index'
   get 'articles/now' => 'articles#now'
+  post 'comment/new' => 'comment#create'
   resources :articles
 
 

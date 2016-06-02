@@ -10,9 +10,7 @@
 .nav li a:hover {
   color: #000;
 }
-.nav .active {
-  background-color: #2ecc71;
-}
+
 .article_title {
   font-size: 20px;
 }
@@ -20,11 +18,13 @@
   font-size: 13px;
   color: #888;
 }
-ul li a:hover {
-  //background-color: red !important;
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
+  //border-bottom-color: #eee !important;
   border: none !important;
-  color: #3c8dbc !important;
+  background-color: #3c8dbc;
+  color: #00cc00 !important;
 }
-a:hover {
-  text-decoration: none !important;
+.nav-tabs.nav-justified>li>a {
+  border-bottom: none !important;
+
 }

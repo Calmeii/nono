@@ -11,11 +11,11 @@
 <!--<p class="alert"><%= alert %></p>-->
 <div id="fakeLoader"></div>
 <ul class="nav nav-tabs nav-justified">
-    <li><%= link_to raw('<span class="glyphicon glyphicon-home"></span> 主页'), root_path%></li>
-    <li><%= link_to raw('<span class="glyphicon glyphicon-leaf"></span> 我的博客'), :controller => 'articles', :action => 'now' %></li>
-    <li><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span> 写文章'), new_article_path() %></li>
-    <li><a href="#"><span class="glyphicon glyphicon-globe"></span> 朋友圈</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 关于我</a></li>
+    <li id="nav1"><%= link_to raw('<span class="glyphicon glyphicon-home"></span> 主页'), root_path%></li>
+    <li id="nav2"><%= link_to raw('<span class="glyphicon glyphicon-leaf"></span> 我的博客'), :controller => 'articles', :action => 'now'%></li>
+    <li id="nav3"><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span> 写文章'), new_article_path() %></li>
+    <li id="nav4"><a href="#"><span class="glyphicon glyphicon-globe"></span> 朋友圈</a></li>
+    <li id="nav5"><a href="#"><span class="glyphicon glyphicon-user"></span> 关于我</a></li>
     <% if current_user %>
     <li>
         <%= link_to raw('<span class="glyphicon glyphicon-log-out"></span> ' )+ current_user.username.to_s.force_encoding("utf-8"), destroy_user_session_path, :method => :delete %>

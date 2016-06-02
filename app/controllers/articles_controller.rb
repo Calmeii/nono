@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, :only => ['now']
+  before_action :authenticate_user!, :only => ['now','new']
   layout "articles_layout"
   def index
     @articles = Article.all
@@ -12,6 +12,8 @@ class ArticlesController < ApplicationController
   #显示指定文章
   def show
     @article = Article.find(params[:id])
+    @comments = @article.comments
+    @comment = Comment.new
   end
   #增加新文章
   def new
@@ -20,7 +22,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build( article_params )
     if @article.save
-      redirect_to articles_now_url(  )
+      redirect_to articles_now_url
     else
       render :action => :new
     end
