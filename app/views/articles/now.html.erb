@@ -1,45 +1,58 @@
 
+<link rel="stylesheet" type="text/css" href="/style/article_now.css">
 
 <div class="container" style="margin-top: 50px">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <% id = 1 %>
+    <div class="col-md-8 col-sm-8 col-xs-8">
+      <h2>所有文章</h2>
       <% @articles.each do |article| %>
-          <div class="panel">
-            <div class="panel-heading">
-              <div class="article_title">
+          <div class="article">
+            <a href="<%= article_path(article) %>">
+              <div class="article-title">
                 <%= article.title.to_s.force_encoding('utf-8') %>
               </div>
+            </a>
+            <div class="article-content">
+              <%= article.content.to_s.force_encoding('utf-8') %>
             </div>
-            <div class="panel-body">
-              <div class="article_content" id = "con<%=id%>"><%= article.content.to_s.force_encoding('utf-8') %></div>
-            </div>
-            <div class="panel-footer panel-primary">
-              <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span> 查看'), article_path(article), style: 'margin-right:30px'%>
-              <%= link_to raw('<span class="glyphicon glyphicon-edit"></span> 编辑'), edit_article_path(article), style: 'margin-right:30px' %>
-              <%= link_to raw('<span class="glyphicon glyphicon-trash"></span> 删除'), article_path(article),
-                          :method => :delete %>
-              <a href="#" style="float: right"><%= article.user.username.to_s.force_encoding('utf-8') %></a>
+            <div class="article-footer">
+              <a href="<%=article_path(article)%>">
+                <span class="glyphicon glyphicon-eye-open"></span> <label> <%=article.watch||0%></label>&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-comment"></span> <label> <%=article.comments.count()%></label>
+                <span id="post-time">--发布于<%=DateTime.parse(article.created_at.to_s).strftime('%Y年%m月%d日').to_s%></span>
+              </a>
+              <a href="/user/info?user=<%=article.user.id%>" id="user-link">
+                <%=article.user.username.to_s.force_encoding('utf-8')%>
+              </a>
             </div>
           </div>
-          <% id = id+1 %>
       <% end %>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-1 col-sm-1 col-xs-1" style="height: 500px;width:0;border-right: 1px solid #eee"></div>
+    <div class="col-md-3 col-sm-3 col-xs-3">
+      <h3>最近评论</h3>
+      <% @articles_comments.each do |comment| %>
+          <div class="article">
+            <a href="<%= article_path(comment.article) %>">
+              <div class="article-title" style="font-size: 13px">
+                <%= comment.user.username.to_s.force_encoding('utf-8') %>
+              </div>
+              <div class="article-content">
+                <%= comment.content.to_s.force_encoding('utf-8') %>
+              </div>
+            </a>
+            <div class="article-footer">
+              <a href="<%=article_path(comment.article)%>">
+                <span id="post2-time"><%=DateTime.parse(comment.created_at.to_s).strftime('%Y年%m月%d日 %H:%m').to_s%></span>
+              </a>
+              <a href="/user/info?user=<%=comment.user.id%>" id="user-link">
+                <%=comment.user.username.to_s.force_encoding('utf-8')%>
+              </a>
+            </div>
+          </div>
+      <% end %></div>
   </div>
 </div>
 
-<script>
-    $(function(){
-          var n = <%=id%>;
-          for (var i = 1; i < n; i++) {
-                var str = $("#con"+i).html();
-                $("#con"+i).html(marked(str));
-          }
-    });
-    $(function(){
-      $("#nav2").addClass('active');
-    });
-
-</script>
+<script type="text/javascript" src="/script/common.js"></script>
+<script type="text/javascript" src="/script/article_now.js"></script>

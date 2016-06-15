@@ -2,18 +2,24 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, :only => ['now','new']
   layout "articles_layout"
   def index
-    @articles = Article.all
+    @articles = Article.all.order("watch desc")
+    @new_articles = Article.all.order("created_at desc").limit(5)
   end
   #显示用户的文章
   def now
     @articles = current_user.articles
+    @articles_comments = Comment.where(["article_id in (?)",current_user.articles.ids]).order("created_at
+                                         desc").limit(5)
   end
 
   #显示指定文章
   def show
-    @article = Article.find(params[:id])
+    @article = Article.where(:id => params[:id]).first
+    @article.watch = @article.watch.to_i + 1
+    @article.save
     @comments = @article.comments
     @comment = Comment.new
+    @latest_articles = @article.user.articles.order("created_at desc").limit(5)
   end
   #增加新文章
   def new

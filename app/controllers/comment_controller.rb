@@ -4,7 +4,6 @@ class CommentController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.created_at = Time.now
     @article = Article.find(params[:article])
     @article.comments << @comment
     current_user.comments << @comment

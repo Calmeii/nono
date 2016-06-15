@@ -1,27 +1,23 @@
+<link rel="stylesheet" type="text/css" href="/style/article_new.css">
+
 <div class="container" style="margin-top: 50px">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <%= form_for @article, :controller => 'articles', :action => 'create', :article => @article do |f| %>
-          <div class="input-group" style="margin-bottom: 20px">
+          <div class="input-group" id="title_area">
           <%= f.text_field :title, placeholer: "Title", class: "form-control", autofocus: true %>
           <span class="input-group-addon" id="basic-addon1">title </span>
           </div>
-          <textarea name="article[content]", id="article_content", rows="15"></textarea>
-          <div class="btn-group"  role="group" style="margin-top: 20px; width: 100%">
-            <%= f.submit "提交", class: "btn btn-lg btn-primary btn-block", style: "width:100%"%>
+          <textarea name="article[content]" id="article_content" rows="20"></textarea>
+          <div class="btn-group"  role="group" id="button_area">
+            <%= f.submit "提交", class: "btn btn-lg btn-primary btn-block", id: "button"%>
           </div>
       <% end %>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 
-<script>
-  $(function(){
-    $("#article_content").markdown({autofocus:false,savable:false})
-  });
-  $(function(){
-    $("#nav3").addClass('active');
-  });
-</script>
+<script type="text/javascript" src="/script/common.js"></script>
+<script type="text/javascript" src="/script/article_new.js"></script>

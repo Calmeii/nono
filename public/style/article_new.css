@@ -1,0 +1,21 @@
+#title_area {
+    margin-bottom: 20px;
+}
+#button_area {
+    margin-top: 20px;
+    width: 100%;
+}
+#button {
+    width: 120px;
+    float: right;
+}
+.btn-primary {
+    background-color: #35B9E4 !important;
+    border-color: #35B9E4 !important;
+}
+.md-editor>textarea {
+    background-color: #fff !important;
+}
+.md-editor .md-footer, .md-editor>.md-header {
+    background-color: #fff !important;
+}

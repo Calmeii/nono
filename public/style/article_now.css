@@ -1,0 +1,12 @@
+a:hover {
+    text-decoration: none;
+}
+.article_title {
+    color: #000;
+}
+.panel-footer > a {
+    margin-right: 20px;
+}
+#user-link {
+    float: right;
+}

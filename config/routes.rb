@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'articles' => 'articles#index'
   get 'articles/now' => 'articles#now'
   post 'comment/new' => 'comment#create'
+  get 'user/info' => 'user#info'
   resources :articles
 
 

@@ -1,8 +1,9 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .nav {
-  background-color: #3c8dbc;
+  background-color: #35B9E4;
 }
 .nav li a{
   color: white;
@@ -10,21 +11,31 @@
 .nav li a:hover {
   color: #000;
 }
-
-.article_title {
-  font-size: 20px;
+a {
+  text-decoration: none !important;
 }
-.article_content {
+.article {
+  border-bottom: 1px solid #eee;
+}
+.article-title {
+  font-size: 18px;
+  color: #000;
+  margin-top: 20px;
+}
+.article-content {
+  margin-top: 15px;
   font-size: 13px;
   color: #888;
 }
-.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
-  //border-bottom-color: #eee !important;
-  border: none !important;
-  background-color: #3c8dbc;
-  color: #00cc00 !important;
+.article-footer {
+  margin-top: 10px;
+  font-size: 13px;
 }
-.nav-tabs.nav-justified>li>a {
-  border-bottom: none !important;
-
+.article-footer > a {
+  color: #999;
+  font-family: "sans-serif";
+  font-weight: lighter;
+}
+#post-time {
+  margin-left: 20px;
 }

@@ -1,64 +1,116 @@
-<div class="container" style="margin-top: 50px">
+<link rel="stylesheet" type="text/css" href="/style/article_show.css">
+
+<div class="container" style="margin-top: 50px;width: 90%">
 
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="article_title">
-              <%= @article.title.to_s.force_encoding('utf-8') %>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="article_content" id = "content"><%= @article.content.to_s.force_encoding('utf-8') %></div>
-          </div>
-          <div class="panel-footer panel-primary" style="overflow: auto">
-            <% if current_user == @article.user%>
-            <%= link_to raw('<span class="glyphicon glyphicon-edit"></span> 编辑'), edit_article_path(@article), style: 'margin-right:30px' %>
-            <%= link_to raw('<span class="glyphicon glyphicon-trash"></span> 删除'), article_path(@article),
-                        :method => :delete %>
-            <% end %>
-            <a href="#" style="float: right"><%= @article.user.username.to_s.force_encoding('utf-8') %></a>
-          </div>
+    <div class="col-md-8 col-sm-8 col-xs-8">
+      <div class="article">
+        <div class="article-title">
+          <%= @article.title.to_s.force_encoding('utf-8') %>
         </div>
-    </div>
-    <div class="col-md-1"></div>
-  </div>
-
-  <div class="row" style="margin-top: 80px">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <div class="panel" style="overflow: hidden;">
-        <div class="panel-heading panel-primary">
-          <span> 评论</span>
+        <div class="article-content">
+          <%= @article.content.to_s.force_encoding('utf-8') %>
         </div>
-
-        <div class="panel-body">
-          <% cnt = 0 %>
-          <% @comments.each do |comment| %>
-            <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 8px">
-              <%= comment.user.username.to_s.force_encoding('utf-8') %>
-            </div>
-            <div>
-              <%= comment.content.to_s.force_encoding('utf-8') %>
-            </div>
-            <div style="color: #999; font-size: 0.9em; margin-top: 8px">
-              <% cnt = cnt+1 %>
-              <%= cnt %> 楼
-              <span style="margin-left: 20px">发布于 <%= DateTime.parse(comment.created_at.to_s).strftime('%Y年%m月%d日 %H:%M').to_s   %></span>
-            </div>
-            <div style="height: 0; border-bottom: 1px solid #eee; margin: 8px 0"></div>
+        <div class="article-footer">
+          <a href="#">
+            <span class="glyphicon glyphicon-eye-open"></span> <label>浏览 <%=@article.watch||0%></label>
+          </a>
+          <% if current_user == @article.user%>
+              <a href="<%=edit_article_path(@article)%>">
+                <span class="glyphicon glyphicon-edit"></span> <label>编辑</label>
+              </a>
+              <a rel="nofollow" data-method="delete" href="<%=article_path(@article)%>">
+                <span class="glyphicon glyphicon-trash"></span> <label>删除</label>
+              </a>
           <% end %>
+          <a href="/user/info?user=<%=@article.user.id%>" id="user-link">
+            <%=@article.user.username.to_s.force_encoding('utf-8')%>
+            <span id="post-time">--发布于<%=DateTime.parse(@article.created_at.to_s).strftime('%Y年%m月%d日').to_s%></span>
+          </a>
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-1 col-sm-1 col-xs-1" style="height: 300px;width:0;border-right: 1px solid #eee"></div>
+    <div class="col-md-3 col-sm-3 col-xs-3">
+      <div class="card">
+        <h3><%=@article.user.username.to_s.force_encoding('utf-8')%></h3>
+        <div class="card-logo">
+          <img src="/image/0.jpg" style="height: 100px;width: 100px; border-radius: 5px"/>
+        </div>
+        <div class="card-body">
+          <div><span class="glyphicon glyphicon-home"></span> 北京 | 男</div>
+          <div><span class="glyphicon glyphicon-education"></span> 北京大学</div>
+          <div><span class="glyphicon glyphicon-arrow-right"></span> 查看详细资料</div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-bottom-a">
+            <span>拥有22位粉丝</span>
+            <button class="follow-button">关注</button>
+          </div>
+          <div class="card-bottom-b">
+            <span>博客 50</span>
+            <span>评论 189</span>
+            <span>收藏 30</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+
+  <div class="row comments-area">
+    <div class="col-md-8 col-sm-8 col-xs-8">
+      <div class="comment" style="overflow: hidden;">
+        <h3>评论</h3>
+        <div class="comment-separate"></div>
+          <% cnt = 0 %>
+          <% @comments.each do |comment| %>
+            <div class="comment-page">
+              <div class="comment-header">
+                <%= comment.user.username.to_s.force_encoding('utf-8') %>
+              </div>
+              <div class="comment-body">
+                <%= comment.content.to_s.force_encoding('utf-8') %>
+              </div>
+              <div class="comment-footer">
+                <% cnt = cnt+1 %>
+                <%= cnt %> 楼
+                <span>发布于 <%= DateTime.parse(comment.created_at.to_s).strftime('%Y年%m月%d日 %H:%M').to_s   %></span>
+              </div>
+              <div class="comment-separate"></div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-md-1 col-sm-1 col-xs-1" style="height: 300px;width:0;border-right: 1px solid #eee"></div>
+    <div class="col-md-3 col-sm-3 col-xs-3">
+      <div class="latest-articles">
+        <h3><%=@article.user.username.to_s.force_encoding('utf-8')%>的近期博客</h3>
+        <% @latest_articles.each do |article| %>
+            <div class="article">
+              <a href="<%= article_path(article) %>">
+                <div class="article-title" style="font-size: 13px">
+                  <%= article.title.to_s.force_encoding('utf-8') %>
+                </div>
+              </a>
+              <div class="article-footer">
+                <a href="<%=article_path(article)%>">
+                  <span id="post2-time"><%=DateTime.parse(article.created_at.to_s).strftime('%Y年%m月%d日 %H:%m').to_s%></span>
+                </a>
+                <a href="/user/info?user=<%=article.user.id%>" id="user-link">
+                  <%=article.user.username.to_s.force_encoding('utf-8')%>
+                </a>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-8">
       <%= form_for @comment, :url => {:controller => 'comment', :action => 'create', :article => @article, :comment => @comment} do |f| %>
-          <textarea name="comment[content]", id="comment_content", rows="5" style="width: 100%; border-radius: 4px;padding: 5px" placeholder="新评论"></textarea>
+          <textarea name="comment[content]" id="comment_content" rows="5" style="width: 100%; border-radius: 4px;padding: 5px" placeholder="新评论"></textarea>
           <div class="btn-group"  role="group" style="margin-top: 20px; width: 100%">
             <%= f.submit "提交", class: "btn btn-lg btn-primary btn-block", style: "width:100%"%>
           </div>
@@ -70,8 +122,8 @@
 </div>
 
 <script>
-  $(function() {
+  (function() {
     var str = $("#content").html();
     $('#content').html(marked(str));
-  })
+  })()
 </script>

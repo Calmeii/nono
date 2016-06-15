@@ -1,0 +1,138 @@
+.user-info {
+    border: solid 1px #eee;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 15px;
+}
+.user-info:before, .user-info:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+.user-info-logo {
+    float: left;
+}
+.user-info-logo > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+}
+.user-info > h3 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.user-info-content {
+    margin-left: 120px;
+}
+.user-info-content span {
+    margin-bottom: 15px;
+    margin-right: 5px;
+}
+.user-info-content-footer {
+    height: 46px;
+    border: 1px solid #eee;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    line-height: 46px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    /*word-break:keep-all;!* 不换行 *!*/
+    /*white-space:nowrap;!* 不换行 *!*/
+}
+.flex-first {
+    background-color: #f7f7f7;
+    border-color: #ddd;
+    color: #222;
+    padding: 0 20px;
+}
+div[class^="flex-item"] {
+    padding: 0 20px;
+    margin-left: 20px;
+}
+
+.user-info-bottom-a {
+    height: 40px;
+    margin-top: 20px;
+    background-color: #fcfcfc;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 2px #f0f0f0 inset;
+    border-radius: 0 0 4px 4px;
+    padding: 0 20px;
+
+    line-height: 40px;
+}
+.follow-button {
+    background: linear-gradient(to bottom,#adda4d,#86b846);
+    border: 1px solid #6d8f29;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset,0 1px 0 rgba(0,0,0,.2);
+    color: #3e5e00;
+    height: 30px;
+    margin-top: 5px;
+    line-height: 30px;
+    border-radius: 3px;
+    float: right;
+    padding: 0 15px;
+}
+
+.follow-info {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.follow-info:before, .follow-info:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+.follow-number {
+    float: left;
+    padding: 2px 30px 8px 0;
+}
+.followed-number {
+    float: left;
+    padding: 2px 30px 8px 20px;
+    border-left: 1px solid #eee;
+}
+div[class$="-number"] > span {
+    font-weight: bold;
+}
+
+.latest-follow {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.latest-follow-display {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+.latest-follow-display > img {
+    margin-right: 5px;
+    width: 34px;
+    height: 34px;
+    border-radius: 3px;
+}
+.watch-info {
+    height: 50px;
+    border-bottom: 1px solid #eee;
+    line-height: 50px;
+    color: #aaa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
